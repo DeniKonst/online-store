@@ -1,10 +1,19 @@
 import React from "react";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Link, NavLink } from "react-router-dom";
 import { Button, Dropdown, Menu } from "antd";
+import Icon, {
+  StarOutlined,
+  StarFilled,
+  StarTwoTone,
+  DollarCircleOutlined,
+} from "@ant-design/icons";
 
 import Home from "../../pages/home/home";
 import Shop from "../../pages/shop/shop";
 import OurStory from "../../pages/ourStory/our-story";
+import Contact from "../../pages/contact/contact";
+import News from "../../pages/news/news";
+import Resipec from "../../pages/resipec/resipec";
 
 import styles from "./styles.module.css";
 
@@ -17,22 +26,29 @@ const App = () => {
     </Menu>
   );
 
+  const activeRouteStyle = { color: 'teal' };
+
   return (
     <div className={styles.app}>
       <header className={styles.header}>
-        <div className={styles.call}>call</div>
+        <div className={styles.call}>
+          <DollarCircleOutlined />
+        </div>
         <div className={styles.name}>name</div>
-        <div className={styles.current}>current</div>
+        <div className={styles.currency}>
+          <DollarCircleOutlined />
+          <span>currency</span>
+        </div>
       </header>
       <nav className={styles.nav}>
         <div className={styles.home}>
-          <Link to="/">Home</Link>
+          <NavLink exact activeStyle={activeRouteStyle} to="/">Home</NavLink>
         </div>
         <div className={styles.shop}>
-          <Link to="/shop">Shop</Link>
+          <NavLink activeStyle={activeRouteStyle} to="/shop">Shop</NavLink>
         </div>
         <div className={styles.story}>
-          <Link to="/our-story">Our story</Link>
+          <NavLink activeStyle={activeRouteStyle} to="/our-story">Our story</NavLink>
         </div>
         <div className={styles.toBuy}>
           <Dropdown overlay={menu} placement="bottomRight">
@@ -40,26 +56,27 @@ const App = () => {
           </Dropdown>
         </div>
         <div className={styles.resipec}>
-          <Link to="/resipec">Resipec</Link>
+          <NavLink  activeStyle={activeRouteStyle} to="/resipec">Resipec</NavLink>
         </div>
         <div className={styles.news}>
-          <Link to="/news">News</Link>
+          <NavLink  activeStyle={activeRouteStyle} to="/news">News</NavLink>
         </div>
         <div className={styles.contact}>
-          <Link to="/contact">Contact</Link>
+          <NavLink  activeStyle={activeRouteStyle} to="/contact">Contact</NavLink>
         </div>
       </nav>
       <div className={styles.content}>
-        <Dropdown overlay={menu} placement="bottomRight">
+        {/* <Dropdown overlay={menu} placement="bottomRight">
           <Button type="primary">SHOP NOW</Button>
-        </Dropdown>
+        </Dropdown> */}
+
         <Switch>
-          <Route path="/" component={Home}/>
-          <Route path="/shop" children={() => <Shop/>}/>
-          <Route path="/our-story" children={() => <OurStory/>}/>
-          <Route path="/resipec"><div>RESIPEC</div></Route>
-          <Route path="/news"><div>NEWS</div></Route>
-          <Route path="/contact"><div>CONTACT</div></Route>
+          <Route path="/shop" render={() => <Shop />} />
+          <Route path="/our-story" render={() => <OurStory />} />
+          <Route path="/resipec" render={() => <Resipec />} />
+          <Route path="/news" render={() => <News />} />
+          <Route path="/contact" render={() => <Contact />} />
+          <Route path="/" render={() => <Home />} />
         </Switch>
       </div>
     </div>
