@@ -13,9 +13,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const homeData = useSelector(selectHomeData);
   const isLoading = useSelector(selectIsLoading);
-  console.log("homeData: ", homeData);
-  // console.log("isLoading: ", isLoading);
-  debugger;
+  
   return (
     <div className={cn(styles.home, styles.homeImage)}>
       <Spinner isLoading={isLoading} />
@@ -25,7 +23,6 @@ const Home = () => {
         <div className={styles.games}> GAMES </div>
         <Button
           onClick={() => {
-            debugger;
             dispatch(getHomeData());
           }}
         >

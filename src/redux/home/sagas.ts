@@ -6,11 +6,9 @@ import * as homeActions from "./actions";
 import { Dispatch } from "redux";
 
 function* homeSagaWorker() {
-  debugger;
-  console.log("homeSagaWorker");
   yield put<any>((dispatch: Dispatch) => {
-    debugger;
     dispatch(homeActions.setIsLoading(true));
+
     setTimeout(() => {
       dispatch(homeActions.setIsLoading(false));
       dispatch(homeActions.getChengeButton());
@@ -25,6 +23,7 @@ function* homeSagaWatcher() {
 function* changeButtonNameWorker() {
   yield put<any>((dispatch: Dispatch) => {
     dispatch(homeActions.setIsLoading(true));
+    
     setTimeout(() => {
       dispatch(homeActions.setIsLoading(false));
       dispatch(homeActions.getChengeButtonSuccess({ id: 2, name: "Petya" }));

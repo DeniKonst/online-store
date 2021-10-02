@@ -10,7 +10,7 @@ interface spinnerProps {
 
 const Spinner = ({ isLoading }: spinnerProps) => {
   const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
-  debugger;
+  
   return isLoading ? (
     <div className={styles.showSpinner}>
       <Spin indicator={antIcon} />
