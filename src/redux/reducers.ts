@@ -1,5 +1,9 @@
-export interface State {}
+import homeReducer from './home/reducer'
 
-const stateToReducer = {};
+export interface State {
+  homeReducer: any;
+}
+
+const stateToReducer = {homeReducer};
 
 export default stateToReducer;

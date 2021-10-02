@@ -1,18 +1,46 @@
 import React from "react";
-import styles from "../../pages/home/home.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { Button } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 import cn from "classnames";
 
+import { selectHomeData, selectIsLoading } from "../../redux/home/selectors";
+import { getChengeButton, getHomeData } from "../../redux/home/actions";
+import styles from "../../pages/home/home.module.css";
+import Spinner from "../../components/spinner/spinner";
+
 const Home = () => {
+  const dispatch = useDispatch();
+  const homeData = useSelector(selectHomeData);
+  const isLoading = useSelector(selectIsLoading);
+  console.log("homeData: ", homeData);
+  // console.log("isLoading: ", isLoading);
+  debugger;
   return (
     <div className={cn(styles.home, styles.homeImage)}>
+      <Spinner isLoading={isLoading} />
       <div className={styles.homeItem}>
         <div className={styles.foto}> FOTO </div>
         <div className={styles.music}> MUSIC </div>
         <div className={styles.games}> GAMES </div>
+        <Button
+          onClick={() => {
+            debugger;
+            dispatch(getHomeData());
+          }}
+        >
+          Показать лоадер
+        </Button>
+        <Button
+          onClick={() => {
+            dispatch(getChengeButton());
+          }}
+        >
+          {homeData.name}
+        </Button>
       </div>
     </div>
   );
 };
 
 export default Home;
-
