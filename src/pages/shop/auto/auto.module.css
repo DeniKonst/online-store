@@ -1,0 +1,36 @@
+.auto {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.autoImage {
+  width: 100%;
+  /* background-image: url("../../images/Car.jpg"); */
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.addAutoFormWrapper {
+  padding: 24px;
+}
+
+.inputFormWrapper {
+  display: flex;
+}
+
+.inputFormWrapperAntBtn {
+  margin-left: 10px;
+}
+
+.autoItems {
+  padding: 10px 0 0 !important;
+}
+
+.autoItem {
+  display: block;
+  width: 100%;
+  background-color: burlywood;
+  text-align: center;
+}

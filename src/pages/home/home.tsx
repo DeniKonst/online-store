@@ -13,6 +13,8 @@ const Home = () => {
   const dispatch = useDispatch();
   const homeData = useSelector(selectHomeData);
   const isLoading = useSelector(selectIsLoading);
+
+  
   
   return (
     <div className={cn(styles.home, styles.homeImage)}>
