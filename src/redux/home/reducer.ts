@@ -4,16 +4,16 @@ import * as homeActions from "./actions";
 
 type HomeActions = ActionType<typeof homeActions>;
 
-const initialState = {
+const initialState: IHomeState = {
   data: { id: 1, name: "Увасиа" },
   pending: false,
   isError: false,
 };
 // почитать дженерик type-script
-export default createReducer<IHomeState, HomeActions>(initialState)
+export const homeReducer = createReducer<IHomeState, HomeActions>(initialState)
   .handleAction([homeActions.setIsLoading], (state, { payload }) => {
     return { ...state, pending: payload };
   })
-  .handleAction([homeActions.getChengeButtonSuccess], (state, { payload }) => {
+  .handleAction([homeActions.getChangeButtonSuccess], (state, { payload }) => {
     return { ...state, data: payload };
   });

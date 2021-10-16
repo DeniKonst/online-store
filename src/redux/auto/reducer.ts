@@ -4,7 +4,7 @@ import * as autoActions from "./actions";
 
 type AutoActions = ActionType<typeof autoActions>;
 
-const initialState = {
+const initialState: IAutoState = {
   data: [],
   pending: false,
   isError: false,

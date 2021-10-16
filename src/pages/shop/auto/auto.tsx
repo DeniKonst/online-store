@@ -3,7 +3,6 @@ import styles from "./auto.module.css";
 
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "antd";
-import { LoadingOutlined } from "@ant-design/icons";
 import cn from "classnames";
 import { addAuto, getAuto, getAutoData } from "../../../redux/auto/actions";
 import Spinner from "../../../components/spinner/spinner";

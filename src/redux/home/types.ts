@@ -1,7 +1,7 @@
 
 // TODO: исправить типизацию (без any)
 export interface IHomeState {
-  data: any;
+  data: IGetChangeButtonSuccess;
   pending: boolean;
   isError: boolean;
 };

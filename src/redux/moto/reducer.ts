@@ -4,7 +4,7 @@ import * as motoActions from "./actions";
 
 type MotoActions = ActionType<typeof motoActions>;
 
-const initialState = {
+const initialState: IMotoState = {
   data: [],
   pending: false,
   isError: false,

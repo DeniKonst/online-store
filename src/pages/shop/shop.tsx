@@ -1,7 +1,4 @@
 import React from "react";
-import styles from "../../pages/shop/shop.module.css";
-import Image from "../../../src/images/Car.jpg";
-import { Switch, Route, Link } from "react-router-dom";
 import Auto from "../../pages/shop/auto/auto";
 import Moto from "../../pages/shop/moto/moto";
 import Velo from "../../pages/shop/velo/velo";

@@ -4,7 +4,7 @@ export interface IAddMotoSuccessPayload {
 }
 
 export interface IMotoState {
-  data: IAddMotoSuccessPayload[]; 
+  data: IAddMotoSuccessPayload[];
   pending: boolean;
   isError: boolean;
 }

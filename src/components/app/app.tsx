@@ -1,12 +1,7 @@
 import React from "react";
-import { Switch, Route, Link, NavLink } from "react-router-dom";
+import { Switch, Route, NavLink } from "react-router-dom";
 import { Button, Dropdown, Menu } from "antd";
-import Icon, {
-  StarOutlined,
-  StarFilled,
-  StarTwoTone,
-  DollarCircleOutlined,
-} from "@ant-design/icons";
+import { DollarCircleOutlined } from "@ant-design/icons";
 
 import Home from "../../pages/home/home";
 import Shop from "../../pages/shop/shop";

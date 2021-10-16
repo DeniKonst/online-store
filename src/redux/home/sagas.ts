@@ -1,7 +1,7 @@
 import { put, takeEvery } from "@redux-saga/core/effects";
-import { all } from "redux-saga/effects";
+import {all} from "redux-saga/effects";
 import { getType } from "typesafe-actions";
-import { getChengeButton, getHomeData } from "./actions";
+import { getChangeButton, getHomeData } from "./actions";
 import * as homeActions from "./actions";
 import { Dispatch } from "redux";
 
@@ -11,7 +11,7 @@ function* homeSagaWorker() {
 
     setTimeout(() => {
       dispatch(homeActions.setIsLoading(false));
-      dispatch(homeActions.getChengeButton());
+      dispatch(homeActions.getChangeButton());
     }, 2000);
   });
 }
@@ -26,13 +26,13 @@ function* changeButtonNameWorker() {
     
     setTimeout(() => {
       dispatch(homeActions.setIsLoading(false));
-      dispatch(homeActions.getChengeButtonSuccess({ id: 2, name: "Petya" }));
+      dispatch(homeActions.getChangeButtonSuccess({ id: 2, name: "Petya" }));
     }, 2000);
   });
 }
 
 function* changeButtonNameWatcher() {
-  yield takeEvery(getType(getChengeButton), changeButtonNameWorker);
+  yield takeEvery(getType(getChangeButton), changeButtonNameWorker);
 }
 
 export default function* homeSaga() {

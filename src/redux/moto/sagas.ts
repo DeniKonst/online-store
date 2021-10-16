@@ -1,9 +1,9 @@
-import { put, takeEvery } from "@redux-saga/core/effects";
 import { all } from "redux-saga/effects";
 import { v4 as uuidv4 } from "uuid";
 import { getType } from "typesafe-actions";
 import * as motoActions from "./actions";
 import { Dispatch } from "redux";
+import {put, takeEvery} from "@redux-saga/core/effects";
 
 function* addMotoWorker({
   payload,

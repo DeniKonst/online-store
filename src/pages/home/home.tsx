@@ -1,11 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "antd";
-import { LoadingOutlined } from "@ant-design/icons";
 import cn from "classnames";
 
 import { selectHomeData, selectIsLoading } from "../../redux/home/selectors";
-import { getChengeButton, getHomeData } from "../../redux/home/actions";
+import { getChangeButton, getHomeData } from "../../redux/home/actions";
 import styles from "../../pages/home/home.module.css";
 import Spinner from "../../components/spinner/spinner";
 
@@ -32,7 +31,7 @@ const Home = () => {
         </Button>
         <Button
           onClick={() => {
-            dispatch(getChengeButton());
+            dispatch(getChangeButton());
           }}
         >
           {homeData.name}
