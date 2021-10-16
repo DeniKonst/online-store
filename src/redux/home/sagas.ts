@@ -12,7 +12,7 @@ function* homeSagaWorker() {
     setTimeout(() => {
       dispatch(homeActions.setIsLoading(false));
       dispatch(homeActions.getChengeButton());
-    }, 4000);
+    }, 2000);
   });
 }
 
@@ -27,7 +27,7 @@ function* changeButtonNameWorker() {
     setTimeout(() => {
       dispatch(homeActions.setIsLoading(false));
       dispatch(homeActions.getChengeButtonSuccess({ id: 2, name: "Petya" }));
-    }, 4000);
+    }, 2000);
   });
 }
 
