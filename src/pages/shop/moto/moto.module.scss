@@ -1,0 +1,41 @@
+.moto {
+  display: flex;
+  justify-content: space-around;
+}
+
+.input_form_wrapper {
+  display: flex;
+  width: 500px;
+  padding-top: 20px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.list_item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  margin: 5px 0;
+  background: darkgray;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  & > svg {
+    cursor: pointer;
+  }
+}
+
+.list_item_text {
+  color: #fafafa;
+}
+
+.list_item_delete_icon {
+  cursor: pointer;
+}

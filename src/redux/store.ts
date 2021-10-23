@@ -1,8 +1,9 @@
 import { composeWithDevTools } from "redux-devtools-extension";
-import {createLogger} from 'redux-logger';
+
 import { IExtension, IModuleStore, createStore } from "redux-dynamic-modules";
 import { getSagaExtension } from "redux-dynamic-modules-saga";
 import { getThunkExtension } from "redux-dynamic-modules-thunk";
+import { createLogger } from "redux-logger";
 import reduxRootModule from "./module";
 import {State} from "./reducers";
 
