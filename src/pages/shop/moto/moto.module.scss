@@ -9,27 +9,17 @@
   padding-top: 20px;
 }
 
+.moto_sort_panel {
+  display: flex;
+  width: 50px;
+  background-color: darkmagenta;
+
+}
+
 .list {
   display: flex;
   flex-direction: column;
   padding: 0;
-}
-
-.list_item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px;
-  margin: 5px 0;
-  background: darkgray;
-
-  &:hover {
-    opacity: 0.8;
-  }
-
-  & > svg {
-    cursor: pointer;
-  }
 }
 
 .list_item_text {

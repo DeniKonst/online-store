@@ -4,10 +4,17 @@ export interface IAddMotoSuccessPayload {
   isCompleted: boolean;
 }
 
+export interface IAddMotoData {
+  motoData: IAddMotoSuccessPayload[];
+  checkedIds: string[];
+  // arrMotoData: IAddMotoSuccessPayload[];
+}
+
 export interface IMotoState {
-  data: IAddMotoSuccessPayload[];
+  data: IAddMotoData;
   pending: boolean;
   isError: boolean;
+  sort: string;
 }
 
 export interface IUpdateMotoSuccessPayload {

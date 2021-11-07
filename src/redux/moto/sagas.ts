@@ -1,10 +1,11 @@
-import { all } from "redux-saga/effects";
+import { all, takeEvery, put } from "redux-saga/effects";
+import { select } from "typed-redux-saga";
 import { v4 as uuidv4 } from "uuid";
 import { getType } from "typesafe-actions";
 import * as motoActions from "./actions";
 import { Dispatch } from "redux";
-import { put, takeEvery } from "@redux-saga/core/effects";
 import { batch } from "react-redux";
+import { selectMotoItems } from "./selectors";
 
 function* addMotoWorker({
   payload: name,
@@ -32,7 +33,9 @@ function* addMotoWatcher() {
 function* delleteMotoWorker({
   payload,
 }: ReturnType<typeof motoActions.deleteMotoData>) {
-  debugger;
+  // const motoData = yield* select(selectMotoItems) as any;
+  // console.log("motoData: ", motoData);
+
   yield put<any>((dispatch: Dispatch) => {
     dispatch(motoActions.setIsLoading(true));
 
@@ -68,6 +71,33 @@ function* updaeteMotoWatcher() {
   yield takeEvery(getType(motoActions.updateMotoData), updateMotoWorker);
 }
 
+function* delleteLableMotoWorker({
+  payload,
+}: ReturnType<typeof motoActions.deleteCheckedMotoData>) {
+  yield put<any>((dispatch: Dispatch) => {
+    dispatch(motoActions.setIsLoading(true));
+
+    setTimeout(() => {
+      batch(() => {
+        dispatch(motoActions.setIsLoading(false));
+        dispatch(motoActions.deleteCheckedMotoDataSuccess(payload));
+      });
+    }, 1000);
+  });
+}
+
+function* delleteLableMotoWatcher() {
+  yield takeEvery(
+    getType(motoActions.deleteCheckedMotoData),
+    delleteLableMotoWorker
+  );
+}
+
 export default function* motoSaga() {
-  yield all([addMotoWatcher(), delleteMotoWatcher(), updaeteMotoWatcher()]);
+  yield all([
+    addMotoWatcher(),
+    delleteMotoWatcher(),
+    updaeteMotoWatcher(),
+    delleteLableMotoWatcher(),
+  ]);
 }
