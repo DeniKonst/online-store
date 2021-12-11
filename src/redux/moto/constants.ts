@@ -1,4 +1,7 @@
-export enum SortByNameType {
-  descending = "-name",
-  ascending = "name",
+export enum SortByType {
+  nameDescending = "-name",
+  nameAscending = "name",
+  idDescending = "-id",
+  idAscending = "id",
 }
+

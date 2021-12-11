@@ -1,8 +1,9 @@
 import { createAction } from "typesafe-actions";
-import { SortByNameType } from "./constants";
+import { SortByType } from "./constants";
 import {
   IAddMotoData,
   IAddMotoSuccessPayload,
+  IGetMotoDataPayload,
   IUpdateMotoSuccessPayload,
 } from "./types";
 
@@ -13,10 +14,10 @@ export const addMotoDataSuccess = createAction(
   "MOTO/ADD_MOTO_DATA_SUCCESS"
 )<IAddMotoSuccessPayload>();
 
-export const deleteMotoData = createAction("MOTO/DELETE_MOTO_DATA")<string>();
+export const deleteMotoData = createAction("MOTO/DELETE_MOTO_DATA")<number>();
 export const deleteMotoDataSuccess = createAction(
   "MOTO/DELETE_MOTO_DATA_SUCCESS"
-)<string>();
+)<number>();
 
 export const updateMotoData = createAction(
   "MOTO/UPDATE_MOTO_DATA"
@@ -27,17 +28,18 @@ export const updateMotoDataSuccess = createAction(
 
 export const deleteCheckedMotoData = createAction(
   "MOTO/DELETE_CHECKED_MOTO_DATA"
-)<string[]>();
+)<number[]>();
 export const deleteCheckedMotoDataSuccess = createAction(
   "MOTO/DELETE_CHECKED_MOTO_DATA_SUCCESS"
-)<string[]>();
+)<number[]>();
 
-export const sortItemMotoData = createAction(
-  "MOTO/SORT_MOTO_DATA"
-)<SortByNameType>();
-export const sortItemMotoDataSuccess = createAction(
-  "MOTO/SORT_MOTO_DATA_SUCCESS"
-)<IAddMotoData[]>();
+export const getItemMotoData = createAction(
+  "MOTO/GET_ITEM_MOTO_DATA"
+)<SortByType>();
+
+export const getItemMotoDataSuccess = createAction(
+  "MOTO/GET_ITEM_MOTO_DATA_SUCCESS"
+)<IGetMotoDataPayload>();
 
 // const createCustomAction = (type: string) => {
 //   return <T>() => {
@@ -50,5 +52,3 @@ export const sortItemMotoDataSuccess = createAction(
 // const actionCreator = createCustomAction('fdfdf')<string>();
 
 // actionCreator('dsdsd')
-
-

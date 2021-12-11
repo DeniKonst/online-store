@@ -22,7 +22,7 @@ const App = () => {
   );
 
   const activeRouteStyle = { color: 'teal' };
-
+ 
   return (
     <div className={styles.app}>
       <header className={styles.header}>

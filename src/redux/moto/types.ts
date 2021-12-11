@@ -1,24 +1,30 @@
+import { SortByType } from "./constants";
+
 export interface IAddMotoSuccessPayload {
-  id: string;
+  id: number;
   name: string;
   isCompleted: boolean;
 }
 
 export interface IAddMotoData {
   motoData: IAddMotoSuccessPayload[];
-  checkedIds: string[];
-  // arrMotoData: IAddMotoSuccessPayload[];
+  checkedIds: number[];
 }
 
 export interface IMotoState {
   data: IAddMotoData;
   pending: boolean;
   isError: boolean;
-  sort: string;
+  sort: SortByType | null;
 }
 
 export interface IUpdateMotoSuccessPayload {
-  id: string;
+  id: number;
   name?: string;
   isCompleted?: boolean;
+}
+
+export interface IGetMotoDataPayload {
+  motoData: IAddMotoSuccessPayload[];
+  sort: SortByType;
 }

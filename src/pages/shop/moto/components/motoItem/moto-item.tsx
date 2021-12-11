@@ -14,8 +14,8 @@ import {
   addMotoData,
   deleteMotoData,
   updateMotoData,
-} from "../../../../redux/moto/actions";
-import { IAddMotoSuccessPayload } from "../../../../redux/moto/types";
+} from "../../../../../redux/moto/actions";
+import { IAddMotoSuccessPayload } from "../../../../../redux/moto/types";
 import styles from "./moto-item.module.scss";
 
 interface IMotoItem {

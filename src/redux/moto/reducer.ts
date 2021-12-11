@@ -2,15 +2,22 @@ import { createReducer, ActionType } from "typesafe-actions";
 import { IMotoState } from "./types";
 import * as motoActions from "./actions";
 import { isDebuggerStatement } from "typescript";
+import { SortByType } from "./constants";
 
 type MotoActions = ActionType<typeof motoActions>;
 
 const initialState: IMotoState = {
   data: {
-    motoData: [],
+    motoData: [
+      { id: 1, name: "Ява", isCompleted: false },
+      { id: 2, name: "Сузуки", isCompleted: false },
+      { id: 3, name: "БМВ", isCompleted: false },
+      { id: 4, name: "Хонда", isCompleted: false },
+      { id: 5, name: "Мицубиши", isCompleted: false },
+    ],
     checkedIds: [],
   },
-  sort: '',
+  sort: null,
   pending: false,
   isError: false,
 };
@@ -26,7 +33,7 @@ export const motoReducer = createReducer<IMotoState, MotoActions>(initialState)
     };
   })
   .handleAction([motoActions.deleteMotoDataSuccess], (state, { payload }) => {
-    const checkedIds: string[] = [];
+    const checkedIds: number[] = [];
     const updetedData = state.data.motoData.filter((item) => {
       if (item.isCompleted && item.id !== payload) {
         checkedIds.push(item.id);
@@ -36,7 +43,7 @@ export const motoReducer = createReducer<IMotoState, MotoActions>(initialState)
     return { ...state, data: { checkedIds, motoData: updetedData } };
   })
   .handleAction([motoActions.updateMotoDataSuccess], (state, { payload }) => {
-    const checkedIds: string[] = [];
+    const checkedIds: number[] = [];
     const updatedData = state.data.motoData.map((item) => {
       if (item.id === payload.id) {
         if (payload.isCompleted) {
@@ -58,6 +65,16 @@ export const motoReducer = createReducer<IMotoState, MotoActions>(initialState)
       return {
         ...state,
         data: { checkedIds: [], motoData: deleteCheckeddData },
+      };
+    }
+  )
+  .handleAction(
+    [motoActions.getItemMotoDataSuccess],
+    (state, { payload: { motoData, sort } }) => {
+      return {
+        ...state,
+        data: { ...state.data, motoData },
+        sort,
       };
     }
   );

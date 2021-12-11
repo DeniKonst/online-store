@@ -6,3 +6,4 @@ export const selectMotoItems = (state: State) =>
 export const selectCheckedIds = (state: State) =>
   state.motoReducer.data.checkedIds;
 export const selectIsLoading = (state: State) => state.motoReducer.pending;
+export const selectSortType = (state: State) => state.motoReducer.sort;

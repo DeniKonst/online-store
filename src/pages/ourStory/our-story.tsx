@@ -1,6 +1,13 @@
-import React from 'react';
-import styles from "../../pages/ourStory/story.module.css"
+import React from "react";
+import { SharedDilog } from "../../components/sharedDilog/shared_dilog";
+import styles from "../../pages/ourStory/story.module.css";
 
-const OurStory = () => <div className = {styles.story}>OUR STORY Ну вы, блин, даете!</div>;
+const OurStory = () => {
+  return (
+    <div className={styles.story}>
+      <SharedDilog />
+    </div>
+  );
+};
 
 export default OurStory;

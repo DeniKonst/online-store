@@ -11,12 +11,13 @@ import Spinner from "../../../components/spinner/spinner";
 import {
   addMotoData,
   deleteCheckedMotoData,
-  sortItemMotoData,
+  getItemMotoData,
 } from "../../../redux/moto/actions";
-import { SortByNameType } from "../../../redux/moto/constants";
+import { SortByType } from "../../../redux/moto/constants";
 import { selectIsLoading, selectMotoData } from "../../../redux/moto/selectors";
 import { IAddMotoSuccessPayload } from "../../../redux/moto/types";
-import { MotoItem } from "./Components/moto-item";
+import { MotoItem } from "./components/motoItem/moto-item";
+import { SortByButtons } from "./components/sortByButtons/sort-by-buttons";
 import styles from "./moto.module.scss";
 
 interface ISortMotoData {
@@ -89,29 +90,7 @@ const Moto = () => {
                 add moto
               </Button>
             </div>
-            <div className={styles.moto_sort_panel}>
-              <span
-                onClick={(e: any) => {
-                  console.log(
-                    'e.target.closest(".descending"): ',
-                    e.target.closest(".descending")
-                  );
-
-                  if (e.target.closest(".descending")) {
-                    dispatch(sortItemMotoData(SortByNameType.ascending));
-                  }
-                  if (e.target.closest(".ascending")) {
-                    // dispatch(sortItemMotoData('-name'));
-                  }
-                }}
-              >
-                {String(inputValue) === "-name" ? (
-                  <SortDescendingOutlined size={30} className="descending" />
-                ) : (
-                  <SortAscendingOutlined size={30} className="ascending" />
-                )}
-              </span>
-            </div>
+            <SortByButtons/>
           </div>
 
           <Button
