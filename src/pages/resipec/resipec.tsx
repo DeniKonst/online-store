@@ -1,162 +1,124 @@
-import React, { useEffect, useRef, useState } from "react";
-import { LeftCircleOutlined, RightCircleOutlined } from "@ant-design/icons";
+import React, {useEffect, useRef, useState} from "react";
+import {LeftCircleOutlined, RightCircleOutlined} from "@ant-design/icons";
 import styles from "./resipec.module.scss";
-import { Button } from "antd";
-
-const SLIDER_BAND_LENGTH = 1200;
-const START_SLIDER_POSITION = 0;
+import {Button} from "antd";
 
 const SLIDER_CONFIG = [
-  {
-    id: 1,
-    cls: styles.blue,
-    title: "B",
-  },
-  {
-    id: 2,
-    cls: styles.pinck,
-    title: "P",
-  },
-  {
-    id: 3,
-    cls: styles.red,
-    title: "R",
-  },
-  {
-    id: 4,
-    cls: styles.green,
-    title: "G",
-  },
+    {
+        id: 1,
+        cls: styles.blue,
+        title: "B",
+    },
+    {
+        id: 2,
+        cls: styles.pinck,
+        title: "P",
+    },
+    {
+        id: 3,
+        cls: styles.red,
+        title: "R",
+    },
+    {
+        id: 4,
+        cls: styles.green,
+        title: "G",
+    },
 ];
 
 const Resipec = () => {
-  const [sliderPosition, setSliderPosition] = useState(START_SLIDER_POSITION);
-  // const [isVisibleLeftBtn, setIsVisibleLeftBtn] = useState(true);
-  // const [isVisibleRightBtn, setIsVisibleRightBtn] = useState(true);
-  const [isVisibleBtns, setIsVisibleBtns] = useState(true);
-  const [canStartAutoSlider, setCanStartAutoSlider] = useState(false);
-  const [sliderConfig, setSliderConfig] = useState(SLIDER_CONFIG);
+        const [isVisibleBtns, setIsVisibleBtns] = useState(true);
+        const [canStartAutoSlider, setCanStartAutoSlider] = useState(false);
+        const [activeSliderIndex, setActiveSliderIndex] = useState(0);
 
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
-  const refEl = useRef(null);
-  console.log("sliderPosition: ", sliderPosition);
-  // useEffect(() => {
-  //   console.log('useEffect with deps');
-  // }, [isVisibleLeftBtn]);
+        const slidersCount = SLIDER_CONFIG.length;
 
-  // useEffect(() => {
-  //   console.log('ref', ref);
-  //   console.log('refEl.current', refEl.current);
-  //   const handleScroll = () => {
-  //     console.log('sliderPosition', sliderPosition);
-  //     console.log('ref', ref);
-  //     console.log('refEl', refEl);
-  //   }
-  //   document.addEventListener('scroll', handleScroll)
-  //   console.log('useEffect empty deps');
-  //   return () => {
-  //     document.removeEventListener('scroll', handleScroll)
-  //     console.log('unmount Resipec');
-  //   }
-  // }, []);
+        const timerRef = useRef<NodeJS.Timeout | null>(null);
+        const onRightClickRef = useRef<() => void | undefined>();
 
-  // useEffect(() => {
-  //   console.log('useEffect without deps');
-  // });
+        useEffect(() => {
+            onRightClickRef.current = onRightClick;
+        }, [activeSliderIndex])
 
-  const handleCanStartAutoSlider = (canStart: boolean) => {
-    setCanStartAutoSlider(canStart);
-    setIsVisibleBtns(canStart);
-    let counter = 0;
-    const recurciveAutoSlider = () => {
-      console.log("recurciveAutoSlider: ", counter++);
+        const onLeftClick = () => {
+            setActiveSliderIndex(activeSliderIndex > 0 ? activeSliderIndex - 1 : slidersCount - 1)
+        };
 
-      timerRef.current && clearTimeout(timerRef.current);
-      timerRef.current = setTimeout(recurciveAutoSlider, 2000);
-    };
+        const onRightClick = () => {
+            setActiveSliderIndex(activeSliderIndex < slidersCount - 1 ? activeSliderIndex + 1 : 0)
+        };
 
-    if (canStart) {
-      recurciveAutoSlider();
-    } else if (timerRef.current) {
-      clearTimeout(timerRef.current);
-      timerRef.current = null;
-      setIsVisibleBtns(false);
-    }
-  };
+        const handleStartAutoSlider = (canStart: boolean) => {
+            setCanStartAutoSlider(canStart);
+            setIsVisibleBtns(!canStart);
 
-  // useEffect(() => {
-  //   if (sliderPosition === 0) {
-  //     setIsVisibleLeftBtn(false);
-  //   }
+            const startAutoSlider = () => {
+                if (onRightClickRef.current) {
+                    onRightClickRef.current();
+                }
 
-  //   if (sliderPosition === 0) {
-  //     setIsVisibleRightBtn(false);
-  //   }
-  // }, []);
+                timerRef.current && clearTimeout(timerRef.current);
+                timerRef.current = setTimeout(startAutoSlider, 2000);
+            };
 
-  const onLeftClick = () => {
-    // if (!isVisibleRightBtn) {
-    //   setIsVisibleRightBtn(true);
-    // }
+            if (canStart) {
+                startAutoSlider();
+            } else if (timerRef.current) {
+                clearTimeout(timerRef.current);
+                timerRef.current = null;
+            }
+        };
 
-    if (sliderPosition === -900) {
-      setSliderPosition(0);
-    } else {
-      setSliderPosition(sliderPosition - 300);
-    }
+        const renderSliderConfig = SLIDER_CONFIG.map((item, i) => {
+            let styles: React.CSSProperties | undefined = undefined;
 
-    // setIsVisibleLeftBtn(false);
+            const isPrevOutsideIndex = i - 1 < 0;
+            const isNextOutsideIndex = i + 1 === slidersCount;
 
-    // if (sliderPosition >= -600) {
-    //   setSliderPosition(sliderPosition - 300);
-    // }
-  };
+            const prevIndex = isPrevOutsideIndex ? slidersCount - 1 : i - 1;
+            const nextIndex = isNextOutsideIndex ? 0 : i + 1;
 
-  const onRightClick = () => {
-    // if (!isVisibleLeftBtn) {
-    //   setIsVisibleLeftBtn(true);
-    // }
-    const cloneSliderConfig = [...sliderConfig];
-    const firstConfig = cloneSliderConfig.shift();
-    if (firstConfig) {
-      cloneSliderConfig.push(firstConfig);
-    }
-    setSliderConfig(cloneSliderConfig);
-    setSliderPosition(sliderPosition + 300);
-    // setIsVisibleRightBtn(false);
+            if (prevIndex === activeSliderIndex) {
+                styles = {transform: 'translate(-150%, -50%)', opacity: 0.25}
+            }
 
-    // if (sliderPosition <= -300) {
-    //   setSliderPosition(sliderPosition + 300);
-    // }
-  };
+            if (i === activeSliderIndex) {
+                styles = {zIndex: 1, opacity: 1}
+            }
 
-  return (
-    <div ref={refEl} className={styles.container}>
-      <Button onClick={() => handleCanStartAutoSlider(!canStartAutoSlider)}>
-        {canStartAutoSlider ? "Stop slider" : "Start slider"}
-      </Button>
-      <div className={styles.slider}>
-        <LeftCircleOutlined
-          onClick={onLeftClick}
-          className={styles.iconLeft}
-          // style={{ display: isVisibleLeftBtn ? "block" : "none" }}
-        />
-        <RightCircleOutlined
-          onClick={onRightClick}
-          className={styles.iconRight}
-          // style={{ display: isVisibleRightBtn ? "block" : "none" }}
-        />
-        <div style={{ left: sliderPosition }} className={styles.band}>
-          {sliderConfig.map((item) => (
-            <div key={item.id} className={item.cls}>
-              {item.title}
+            if (nextIndex === activeSliderIndex) {
+                styles = {transform: 'translate(50%, -50%)', opacity: 0.25}
+            }
+
+            return <div style={styles} key={item.id} className={item.cls}>
+                {item.title}
             </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};
+        })
+
+        return (
+            <div className={styles.container}>
+                <Button onClick={() => handleStartAutoSlider(!canStartAutoSlider)}>
+                    {canStartAutoSlider ? "Stop slider" : "Start slider"}
+                </Button>
+                <div className={styles.slider}>
+                    {isVisibleBtns && <>
+                        <LeftCircleOutlined
+                            onClick={onLeftClick}
+                            className={styles.iconLeft}
+                        />
+                        <RightCircleOutlined
+                            onClick={onRightClick}
+                            className={styles.iconRight}
+                        />
+                    </>}
+                    <div className={styles.band}>
+                        {renderSliderConfig}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+;
 
 export default Resipec;
 
