@@ -11,6 +11,8 @@ import News from "../../pages/news/news";
 import Resipec from "../../pages/resipec/resipec";
 
 import styles from "./styles.module.css";
+import { UserDialog } from "../productInCartDialog/user-dilog";
+import { AddProductDialog } from "../productInCartDialog/add-product-dialog";
 
 const App = () => {
   const menu = (
@@ -21,8 +23,8 @@ const App = () => {
     </Menu>
   );
 
-  const activeRouteStyle = { color: 'teal' };
- 
+  const activeRouteStyle = { color: "teal" };
+
   return (
     <div className={styles.app}>
       <header className={styles.header}>
@@ -37,13 +39,19 @@ const App = () => {
       </header>
       <nav className={styles.nav}>
         <div className={styles.home}>
-          <NavLink exact activeStyle={activeRouteStyle} to="/">Home</NavLink>
+          <NavLink exact activeStyle={activeRouteStyle} to="/">
+            Home
+          </NavLink>
         </div>
         <div className={styles.shop}>
-          <NavLink activeStyle={activeRouteStyle} to="/shop">Shop</NavLink>
+          <NavLink activeStyle={activeRouteStyle} to="/shop">
+            Shop
+          </NavLink>
         </div>
         <div className={styles.story}>
-          <NavLink activeStyle={activeRouteStyle} to="/our-story">Our story</NavLink>
+          <NavLink activeStyle={activeRouteStyle} to="/our-story">
+            Our story
+          </NavLink>
         </div>
         <div className={styles.toBuy}>
           <Dropdown overlay={menu} placement="bottomRight">
@@ -51,13 +59,19 @@ const App = () => {
           </Dropdown>
         </div>
         <div className={styles.resipec}>
-          <NavLink  activeStyle={activeRouteStyle} to="/resipec">Resipec</NavLink>
+          <NavLink activeStyle={activeRouteStyle} to="/resipec">
+            Resipec
+          </NavLink>
         </div>
         <div className={styles.news}>
-          <NavLink  activeStyle={activeRouteStyle} to="/news">News</NavLink>
+          <NavLink activeStyle={activeRouteStyle} to="/news">
+            News
+          </NavLink>
         </div>
         <div className={styles.contact}>
-          <NavLink  activeStyle={activeRouteStyle} to="/contact">Contact</NavLink>
+          <NavLink activeStyle={activeRouteStyle} to="/contact">
+            Contact
+          </NavLink>
         </div>
       </nav>
       <div className={styles.content}>
@@ -73,6 +87,8 @@ const App = () => {
           <Route path="/contact" render={() => <Contact />} />
           <Route path="/" render={() => <Home />} />
         </Switch>
+        <UserDialog />
+        <AddProductDialog />
       </div>
     </div>
   );

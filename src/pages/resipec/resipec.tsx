@@ -32,10 +32,12 @@ const Resipec = () => {
         const [activeSliderIndex, setActiveSliderIndex] = useState(0);
 
         const slidersCount = SLIDER_CONFIG.length;
+        
+        
 
         const timerRef = useRef<NodeJS.Timeout | null>(null);
         const onRightClickRef = useRef<() => void | undefined>();
-
+        
         useEffect(() => {
             onRightClickRef.current = onRightClick;
         }, [activeSliderIndex])

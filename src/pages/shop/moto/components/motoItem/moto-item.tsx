@@ -18,11 +18,11 @@ import {
 import { IAddMotoSuccessPayload } from "../../../../../redux/moto/types";
 import styles from "./moto-item.module.scss";
 
-interface IMotoItem {
+interface IMotoItemProps {
   item: IAddMotoSuccessPayload;
 }
 
-export const MotoItem = ({ item }: IMotoItem) => {
+export const MotoItem = ({ item }: IMotoItemProps) => {
   const dispatch = useDispatch();
 
   const [inputValue, setInputValue] = useState<string>();

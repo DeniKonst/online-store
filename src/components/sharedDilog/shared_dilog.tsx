@@ -1,45 +1,94 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Button, Modal } from "antd";
+import { ActionType } from "typesafe-actions";
+import { selectDilog } from "../../redux/sharedDialog/selectors";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  cancelDilog,
+  confirmDilog,
+  showDilog,
+} from "../../redux/sharedDialog/actions";
+import { DefauldDialogFooter } from "../footerDialog/default-dialog-footer";
+import { USER_DIALOG_ID, USER_DIALOG_ID1, USER_DIALOG_ID2, USER_DIALOG_ID3, USER_DIALOG_NAME, USER_DIALOG_NAME1, USER_DIALOG_NAME2 } from "../../redux/sharedDialog/constants";
+import { DefauldDialogProductFooter } from "../footerDialog/default-dialog-product-footer";
 
-export const SharedDilog = () => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
+export interface ISharedDialog {
+  id: string;
+  DialogBody: React.FC;
+  
+  hasCustomFooter?: boolean;
+}
 
-  useEffect(() => {
-    fetch("https://httpbin.org/anything", {
-      method: "POST",
-      body: JSON.stringify({ bodyUsed: true }),
-    }).then((data) => {
-      debugger;
-    });
+export const SharedDialog = ({
+  id,
+  DialogBody,
+  hasCustomFooter = false,
+}: ISharedDialog) => {
+  
+  const dispatch = useDispatch();
+ 
+  let footer: any;
+  
+  const {
+    id: dialogDataId,
+    name,
+    isShowed,
+  } = useSelector(selectDilog(id)) || {};
+
+  const handleConfirm = useCallback(() => {
+    dispatch(showDilog({ id: USER_DIALOG_ID, name:  USER_DIALOG_NAME }));
   }, []);
 
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
+  const handleCancel = useCallback(() => {
+    dispatch(cancelDilog(id));
+  }, []);
 
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
+  if (id !== dialogDataId) {
+    return null;
+  }
 
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
+  //  footer = !hasCustomFooter && (
+     
+  //   <DefauldDialogFooter
+  //     handleConfirm={handleConfirm}
+  //     handleCancel={handleCancel}
+  //   />
+  // );
+
+
+  if (id == USER_DIALOG_ID || id == USER_DIALOG_ID1 || id == USER_DIALOG_ID2 || id == USER_DIALOG_ID3) {
+    footer = <DefauldDialogProductFooter handleCancel={handleCancel} />;
+  } else {
+    footer = (
+      <DefauldDialogFooter
+        handleConfirm={handleConfirm}
+        handleCancel={handleCancel}
+      />
+    );
+  }
 
   return (
     <>
-      <Button type="primary" onClick={showModal}>
-        Open Modal
-      </Button>
       <Modal
-        title="Basic Modal"
-        visible={isModalVisible}
-        onOk={handleOk}
+        title={name}
+        visible={isShowed}
+        onOk={handleConfirm}
         onCancel={handleCancel}
+        destroyOnClose={true}
+        footer=""
       >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+        <DialogBody />
+        {footer}
       </Modal>
     </>
   );
 };
+
+// useEffect(() => {
+//   fetch("https://httpbin.org/anything", {
+//     method: "POST",
+//     body: JSON.stringify({ bodyUsed: true }),
+//   }).then((data) => {
+//     // debugger;
+//   });
+// }, []);
