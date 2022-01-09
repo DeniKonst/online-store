@@ -1,7 +1,7 @@
 {
   "name": "analytics",
   "version": "1.0.0",
-  "description": "fullstack project with angular and express",
+  "description": "fullstack project with react and express",
   "main": "index.js",
   "scripts": {
     "start": "node index",
@@ -9,7 +9,7 @@
   },
   "keywords": [
     "express",
-    "angular"
+    "react"
   ],
   "author": "Deni Konst",
   "license": "ISC",
