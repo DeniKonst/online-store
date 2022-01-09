@@ -13,10 +13,6 @@
   ],
   "author": "Deni Konst",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/andrei8788/fullstack_project/issues"
-  },
-  "homepage": "https://github.com/andrei8788/fullstack_project#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
