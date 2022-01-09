@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a6c6ad24-8203-4fe5-b7d5-9a08edc6d2f9" name="Default Changelist" comment="fixed slider" />
+    <list default="true" id="a6c6ad24-8203-4fe5-b7d5-9a08edc6d2f9" name="Default Changelist" comment="added server">
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_COMMON_BRANCH" value="master" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/server" />
+    <option name="ROOT_SYNC" value="SYNC" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -19,6 +23,7 @@
     </file-type-list>
   </component>
   <component name="ProjectId" id="1zb9pmXmkcuWS7abLLmsdhglO3A" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -80,7 +85,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639262484193</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added server">
+      <created>1641733879224</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1641733879224</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -101,6 +113,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fixed application crash" />
     <MESSAGE value="fixed slider" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed slider" />
+    <MESSAGE value="added server" />
+    <option name="LAST_COMMIT_MESSAGE" value="added server" />
   </component>
 </project>
