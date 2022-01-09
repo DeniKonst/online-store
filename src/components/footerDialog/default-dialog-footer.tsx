@@ -5,7 +5,7 @@ interface IDefaultDialog {
   handleConfirm: () => void;
   handleCancel: () => void;
 }
- const DefauldDialogFooter = React.memo(({
+ export const DefauldDialogFooter = React.memo(({
   handleConfirm,
   handleCancel,
 }: IDefaultDialog) => {
@@ -16,5 +16,3 @@ interface IDefaultDialog {
     </div>
   );
 });
-
-export default DefauldDialogFooter;

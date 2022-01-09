@@ -4,7 +4,7 @@ import React from "react";
 interface IDefaultDialogProduct {
   handleCancel: () => void;
 }
- const DefauldDialogProductFooter = React.memo(({
+ export const DefauldDialogProductFooter = React.memo(({
   handleCancel,
 }: IDefaultDialogProduct) => {
   return (
@@ -13,4 +13,3 @@ interface IDefaultDialogProduct {
     </div>
   );
 });
-export default DefauldDialogProductFooter;

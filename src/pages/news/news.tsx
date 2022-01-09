@@ -1,10 +1,16 @@
 import React from "react";
-import styles from "../../pages/news/news.module.css"
-
-
+import styles from "../../pages/news/news.module.scss";
 
 const News = () => {
-  return <span className = {styles.news}> Lorem  adipisci! </span>
-}
+  return (
+    <div className={styles.newsContainer}>
+      Authorization
+      <div className={styles.modulWindow}> 
+        <div className={styles.login}></div>
+        <div className={styles.password}></div>
+      </div>
+    </div>
+  );
+};
 
 export default News;

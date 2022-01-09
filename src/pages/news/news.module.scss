@@ -1,0 +1,16 @@
+.newsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: large;
+  padding-top: 20px;
+}
+
+.modulWindow {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 80px;
+  height: 40px;
+  width: 100px;
+  border: 1px solid black;
+}
